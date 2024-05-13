@@ -5,31 +5,40 @@ import com.jurgenvrapi.garastore.entities.User;
 import com.jurgenvrapi.garastore.repositories.RoleRepository;
 import com.jurgenvrapi.garastore.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class UserRunner implements CommandLineRunner {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserRunner.class);
 
-    public UserRunner(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserRunner(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(String... args) throws Exception {
         if (userRepository.count() == 0) {
-            Role adminRole = roleRepository.findByRoleName("ADMIN");
-            if (adminRole == null) {
-                adminRole = new Role(null, "ADMIN", null);
-                roleRepository.save(adminRole);
+            Optional<Role> adminRole = roleRepository.findByRoleName("ADMIN");
+            if (adminRole.isEmpty()) {
+                adminRole = Optional.of(new Role(null, "ADMIN", null));
+                roleRepository.save(adminRole.get());
             }
 
-            User adminUser = new User(null, "Admin", "Admin", "admin@garastore.com", "1234567890", "adminPassword", LocalDate.now(), adminRole);
+            String encodedPassword = passwordEncoder.encode("adminPassword");
+            User adminUser = new User(null, "Admin", "Admin", "admin@garastore.com", "1234567890", encodedPassword, LocalDate.now(), adminRole.get());
             userRepository.save(adminUser);
         }
     }

@@ -1,6 +1,8 @@
 package com.jurgenvrapi.garastore.services;
 
+import com.jurgenvrapi.garastore.entities.Role;
 import com.jurgenvrapi.garastore.entities.User;
+import com.jurgenvrapi.garastore.repositories.RoleRepository;
 import com.jurgenvrapi.garastore.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,12 @@ public class UserService {
 
     private static UserRepository userRepository = null;
 
+    private  final RoleRepository roleRepository;
+
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<User> getAllUsers() {
@@ -27,10 +32,13 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        Role clientRole = roleRepository.findByRoleName("CLIENT")
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRole(clientRole);
         return userRepository.save(user);
     }
 
-    public User updateUser(User user) {
+    public User updateUser(Long id, User user) {
         return userRepository.save(user);
     }
 

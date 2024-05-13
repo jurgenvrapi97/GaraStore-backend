@@ -33,7 +33,7 @@ public class Config {
     }
 
     @Bean
-    PasswordEncoder getBCrypt() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(11);
     }
 }
