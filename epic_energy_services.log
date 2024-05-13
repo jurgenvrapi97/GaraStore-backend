@@ -1,0 +1,28 @@
+2024-05-13T12:12:00.327+02:00  WARN 11240 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-13T12:12:00.965+02:00  WARN 11240 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 1149cffa-48f6-4ea4-8a12-113baa6e4613
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-05-13T12:14:35.249+02:00  WARN 6560 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-13T12:14:35.829+02:00  WARN 6560 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: ee2febc7-80b4-49c3-ade8-96f8b82dab08
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-05-13T12:21:54.070+02:00  WARN 13780 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-13T12:21:54.690+02:00  WARN 13780 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a0327658-e6e8-46a4-b3a8-2efeeb0e1739
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-05-13T12:34:44.625+02:00  WARN 27472 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-13T12:34:45.292+02:00  WARN 27472 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: aafdca70-ba7f-4070-a4c1-378939661f84
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
