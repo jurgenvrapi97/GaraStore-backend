@@ -132,3 +132,18 @@ Action:
 
 Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
 
+2024-05-14T12:58:23.468+02:00  WARN 7988 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-14T12:58:23.581+02:00  WARN 7988 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 41399e86-a873-46a8-a575-501e226ab0e8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-05-14T12:58:29.620+02:00  WARN 7988 --- [gara-store] [http-nio-8081-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/octet-stream' is not supported]
+2024-05-14T13:07:34.285+02:00  WARN 32432 --- [gara-store] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-14T13:07:34.393+02:00  WARN 32432 --- [gara-store] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: f267ad66-48c5-45b8-b680-706627099f5d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
