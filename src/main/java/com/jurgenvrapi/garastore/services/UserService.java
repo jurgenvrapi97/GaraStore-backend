@@ -5,6 +5,7 @@ import com.jurgenvrapi.garastore.entities.User;
 import com.jurgenvrapi.garastore.repositories.RoleRepository;
 import com.jurgenvrapi.garastore.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,13 @@ public class UserService {
 
     private  final RoleRepository roleRepository;
 
+    private final BCryptPasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getAllUsers() {
@@ -35,6 +39,7 @@ public class UserService {
         Role clientRole = roleRepository.findByRoleName("CLIENT")
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRole(clientRole);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

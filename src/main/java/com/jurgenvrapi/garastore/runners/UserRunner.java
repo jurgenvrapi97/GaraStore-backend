@@ -28,18 +28,20 @@ public class UserRunner implements CommandLineRunner {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        if (userRepository.count() == 0) {
-            Optional<Role> adminRole = roleRepository.findByRoleName("ADMIN");
-            if (adminRole.isEmpty()) {
-                adminRole = Optional.of(new Role(null, "ADMIN", null));
-                roleRepository.save(adminRole.get());
-            }
-
-            String encodedPassword = passwordEncoder.encode("adminPassword");
-            User adminUser = new User(null, "Admin", "Admin", "admin@garastore.com", "1234567890", encodedPassword, LocalDate.now(), adminRole.get());
-            userRepository.save(adminUser);
+  @Override
+public void run(String... args) throws Exception {
+    if (userRepository.count() == 0) {
+        Optional<Role> adminRole = roleRepository.findByRoleName("ADMIN");
+        if (adminRole.isEmpty()) {
+            Role role = new Role();
+            role.setRoleName("ADMIN");
+            roleRepository.save(role);
+            adminRole = Optional.of(role);
         }
+
+        String encodedPassword = passwordEncoder.encode("adminPassword");
+        User adminUser = new User(null, "Admin", "Admin", "admin@garastore.com", "1234567890", encodedPassword, LocalDate.now(), adminRole.get());
+        userRepository.save(adminUser);
     }
+}
 }

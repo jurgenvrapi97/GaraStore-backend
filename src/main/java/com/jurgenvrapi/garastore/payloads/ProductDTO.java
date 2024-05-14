@@ -13,6 +13,12 @@ public record ProductDTO(
         Double price,
 
         @NotBlank(message = "Description is required")
-        String description
+        String description,
+
+        @NotBlank(message = "Quantity is required")
+        int quantity,
+
+
+        String imageUrl
 ) {
 }

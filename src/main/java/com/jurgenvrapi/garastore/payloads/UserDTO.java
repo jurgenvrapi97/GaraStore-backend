@@ -3,6 +3,9 @@ package com.jurgenvrapi.garastore.payloads;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public record UserDTO(
         @NotBlank(message = "First name is required")
@@ -23,8 +26,7 @@ public record UserDTO(
 
         String phoneNumber,
 
-        String birthDate,
+        @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate birthDate
 
-        String roleName
 ) {
 }
