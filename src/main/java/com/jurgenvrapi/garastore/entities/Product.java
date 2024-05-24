@@ -24,9 +24,9 @@ public class Product {
 
     private String description;
 
-    private int quantity;
+    private Integer quantity;
 
-    private double price;
+    private Double price;
 
     private String imageUrl;
 }

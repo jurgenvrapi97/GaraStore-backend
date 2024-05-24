@@ -1,6 +1,7 @@
 package com.jurgenvrapi.garastore.controllers;
 
 
+import com.jurgenvrapi.garastore.entities.User;
 import com.jurgenvrapi.garastore.exceptions.BadRequestException;
 import com.jurgenvrapi.garastore.payloads.JWTDTO;
 import com.jurgenvrapi.garastore.payloads.LoginDTO;
@@ -28,11 +29,13 @@ public class LoginController {
         this.authService = authService;
     }
 
-    @PostMapping("/login")
-    public JWTDTO login(@RequestBody @Validated LoginDTO loginAuthDTO, BindingResult validation) throws AuthenticationException {
-        if (validation.hasErrors()) {
-            throw new BadRequestException("Invalid data", validation.getAllErrors());
-        }
-        return authService.login(loginAuthDTO);
+   @PostMapping("/login")
+public JWTDTO login(@RequestBody @Validated LoginDTO loginAuthDTO, BindingResult validation) throws AuthenticationException {
+    if (validation.hasErrors()) {
+        throw new BadRequestException("Invalid data", validation.getAllErrors());
     }
+    String token = String.valueOf(authService.login(loginAuthDTO));
+    User user = authService.getUser(loginAuthDTO.getEmail());
+    return new JWTDTO(token, user);
+}
 }
